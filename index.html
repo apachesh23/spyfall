@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+					
+<div class="drag-area" style="height: 434px;">
+	<div tabindex="-1" class="draggable back-layer drag-active" style="top: 64.4374px; left: 226.161px; z-index: 8; transform: rotate(-45deg); transform-origin: 50px 36px 0px;">
+		<div>
+			<div class="item--drag-handler" style="width: 55.83px; height: 74.93px;"></div>
+			<div class="item item--front">
+				<div>
+					<div class="remove-icon hide" style="transform: translateX(-11.2px) scale(0) rotate(0deg); width: 28px; height: 28px; bottom: calc(50% - 14px); right: -28px;">
+						<div class="x__close-icon" style="transform: translateX(-50%) translateY(-50%) rotate(45deg); top: 50%; left: 50%;"></div>
+					</div>
+					<a tabindex="-1" class="open-in-new-tab-icon hide" href="https://www.banter.com/014-gauge-dream-catcher-charm-industrial-barbell-stainless-steel-138/p/V-19955275" target="_blank" style="transform: translateX(-11.2px) scale(0) rotate(45deg); width: 28px; height: 28px; bottom: calc(50% - 14px); right: -28px;">
+						<svg height="15px" viewBox="0 0 48 48" width="15px" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h48v48h-48z" fill="none"></path><path fill="white" d="M38 38h-28v-28h14v-4h-14c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4v-14h-4v14zm-10-32v4h7.17l-19.66 19.66 2.83 2.83 19.66-19.66v7.17h4v-14h-14z"></path></svg>
+					</a>
+					<div style="width: 55.83px; height: 74.93px;">
+						<div class="item__canvas" role="img" aria-label="014 Gauge Dream Catcher Charm Industrial Barbell in Stainless Steel - 1-3/8&quot;" draggable="false" focusable="true" style="position: absolute; top: 0px; left: 0px; width: 223.32px; height: 299.72px; transform-origin: left top; transform: scale(0.25); background-repeat: no-repeat; background-size: contain; pointer-events: none; background-image: url()">
+						</div>
+					</div>
+					<div style="position: absolute; top: 0px; left: 0px; transform: scale(0.5);"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+</body>
+
+<script>
+	
+
+// Создание 6 квадратов
+let heights = [271, 61, 91, 31, 121, 61]; // Разные высоты для каждого квадрата
+
+for (let i = 0; i < 6; i++) {
+    let transparentSquare = document.createElement('div');
+    transparentSquare.style.position = 'fixed';
+    transparentSquare.style.top = (70 + heights.slice(0, i).reduce((a, b) => a + b + 8, 0)) + 'px';
+    transparentSquare.style.right = '8px'; // Расположение по горизонтали
+    transparentSquare.style.width = '162px'; // Ширина
+    transparentSquare.style.height = heights[i] + 'px'; // Высота
+    transparentSquare.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
+    transparentSquare.style.border = '1px solid #33a6e8';
+    transparentSquare.style.borderRadius = '10px'; // Скругленные края
+
+    // Добавление квадрата на страницу
+    document.body.appendChild(transparentSquare);
+}
+
+// Функция для создания кнопки
+function createButton(text, id, top, comment, selectId, height) {
+    let button = document.createElement('button');
+    button.textContent = text;
+    button.type = 'button';
+    button.id = id;
+    button.style.position = 'fixed';
+    button.style.top = top;
+    button.style.right = '10px';
+    button.style.zIndex = '9999';
+    button.style.width = '160px'; // Установите ширину кнопки в 160px
+    button.style.height = '30px';
+    button.style.textAlign = 'center'; // Выравнивание текста по центру
+    button.style.border = 'none';
+
+    button.style.borderRadius = '5px'; // Скругленные края
+    button.style.backgroundColor = 'transparent';
+    button.style.color = 'black'; // Цвет текста
+    button.style.padding = '5px 0'; // Отступы текста (вертикальный отступ 5px, горизонтальный 0)
+    button.style.fontSize = '12px';
+    button.style.cursor = 'pointer'; // Стиль курсора при наведении
+   button.addEventListener('click', function() {
+    // Получите ссылку на элемент <select>
+    let selectComments = $("#" + selectId);
+
+    // Удалите все существующие комментарии
+    selectComments.find('option').remove();
+
+    // Создайте новый комментарий
+    let newComment = new Option(comment, comment, false, true);
+
+    // Добавьте новый комментарий
+    selectComments.append(newComment).trigger('chosen:updated');
+});
+
+    document.body.appendChild(button);
+    return button;
+}
+
+$(document).ready(function() {
+    // Проверка начала текущего URL
+    if (window.location.href.startsWith('https://tngadmin.triplenext.net/Admin/CompareBag/EditBag')) {
+        // Включение Chosen для элемента <select>
+        $("#SelectedComments").chosen();
+
+     
+        // Создание кнопок и комментариев
+        createButton('Low Resolution', 'lowResolutionButton', '70px', 'Bad Image (Low Resolution)', 'SelectedComments');
+        createButton('Unusable Angle', 'unusableAngleButton', '100px', 'Bad Image (Unusable Angle)', 'SelectedComments');
+        createButton('Wrong Image', 'wrongImageButton', '130px', 'Wrong Image', 'SelectedComments');
+        createButton('No Image on PDP', 'noImageOnPDPButton', '160px', 'No Image on PDP', 'SelectedComments');
+        createButton('Not Front View', 'notFrontViewButton', '190px', 'Not Front View', 'SelectedComments');
+        createButton('Image not Whole', 'imageNotWholeButton', '220px', 'Product Image not Whole', 'SelectedComments');
+        createButton('Pieces of products', 'piecesOfProductsButton', '250px', 'Pieces of products', 'SelectedComments');
+        createButton('Cannot remove background', 'cannotRemoveBackgroundButton', '280px', 'Cannot remove background', 'SelectedComments');
+        createButton('Several Products (Set)', 'severalProductsButton', '310px', 'Several Products (Set)', 'SelectedComments');
+
+        createButton('No Dimensions on PDP', 'noDimensionsOnPDPButton', '350px', 'No Dimensions on PDP', 'SelectedComments');
+        createButton('Incorrect Dimensions', 'incorrectDimensionsButton', '380px', 'Incorrect Dimensions (Disproportionate)', 'SelectedComments');
+
+        createButton('Only one dimension', 'oneDimensionButton', '420px', 'There is only one dimension on the PDP', 'SelectedComments');
+        createButton('Scaled by width', 'scaledByWidthButton', '450px', 'Scaled by width, causes height decoration to appear disproportionate', 'SelectedComments');
+        createButton('Scaled by height', 'scaledByHeightButton', '480px', 'Scaled by height, causes width decoration to appear disproportionate', 'SelectedComments');
+
+        createButton('Duplicate', 'duplicateButton', '520px', 'Duplicate', 'SelectedComments');
+
+        createButton('Do not have the goods', 'doNotHaveTheGoodsButton', '560px', 'Do not have the goods', 'SelectedComments');
+        createButton('Error', 'errorButton', '590px', 'Product detail page (URL) doesn\'t load due to an error', 'SelectedComments');
+        createButton('Redirects to homepage', 'redirectsToHomepageButton', '620px', 'Product detail page (URL) redirects to homepage', 'SelectedComments');
+        createButton('Redirects to category page', 'redirectsToCategoryPageButton', '650px', 'Product detail page (URL) redirects to category page', 'SelectedComments');
+
+        createButton('Wrong Category', 'wrongCategoryButton', '690px', 'Wrong Category', 'SelectedComments');
+        createButton('Not Supported', 'notSupportedButton', '720px', 'Product Not Supported by Tangiblee', 'SelectedComments');
+    }
+});
+
+function updateAndConvert(parameterName, value) {
+    // Находим скрытый и видимый элементы input
+    let hiddenInputElement = document.querySelector('.cm-inputs .combo-value[name="' + parameterName + '"]');
+    let visibleInputElement = document.querySelector('.cm-inputs .combo-text');
+
+    // Устанавливаем новое значение
+    if (hiddenInputElement && visibleInputElement) {
+        hiddenInputElement.value = value;
+        visibleInputElement.value = value;
+    } else {
+        console.log("StatusId is hidden.");
+        return;
+    }
+
+    // Эмулируем событие изменения для видимого поля ввода
+    visibleInputElement.dispatchEvent(new Event('change', { bubbles: true, cancelable: true }));
+
+    // Находим элемент ссылки по классу
+    let convertButton = document.querySelector('.convert-numbers-to-measure-btn');
+
+    // Проверяем, найден ли элемент ссылки
+    if (convertButton) {
+        // Эмулируем клик по ссылке
+        convertButton.click();
+    } else {
+        // Обработка, если элемент ссылки не найден
+    }
+}
+
+// Проверяем, что StatusId не является скрытым полем
+let statusInput = document.querySelector('input#StatusId');
+if (statusInput && statusInput.type !== 'hidden') {
+  console.log("StatusId is not hidden.");
+
+  // Создаем кнопку и остальной код
+  // Создаем кнопку
+  const customButton = document.createElement('button');
+  customButton.textContent = '';
+  document.body.appendChild(customButton);
+  // Задаем стили для кнопки
+  customButton.style.position = 'fixed';
+  customButton.style.top = '70px'; // Уровень с первой кнопкой
+  customButton.style.right = '175px';
+  customButton.style.zIndex = '9999';
+  customButton.style.width = '30px';
+  customButton.style.height = '680px'; // Высокая кнопка
+  customButton.style.border = '1px solid rgba(255, 255, 255, 0.9)';
+  customButton.style.borderRadius = '5px';
+  customButton.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+  customButton.style.color = 'white';
+  customButton.style.cursor = 'pointer';
+
+  // Добавляем обработчик события при нажатии на кнопку
+  customButton.addEventListener('click', function() {
+    console.log("Custom button clicked.");
+
+    // Выбираем опцию в #StatusId
+    $("#StatusId").val("5");
+
+    // Выполняем действия с изображением, если оно найдено
+    const element = document.querySelector("#thumbs > ul > li > a.thumb > img");
+    if (element) {
+      const doubleClickEvent = new MouseEvent("dblclick", {
+        bubbles: true,
+        cancelable: true,
+        view: window
+      });
+      element.dispatchEvent(doubleClickEvent);
+    } else {
+      console.error("Элемент не найден");
+    }
+
+    // Выполняем функции updateAndConvert для обновления и конвертации значений
+    updateAndConvert('CurrentDepth', '9');
+    updateAndConvert('CurrentWidth', '9');
+    updateAndConvert('CurrentHeight', '9');
+
+    // Находим и нажимаем кнопку "Сохранить и далее"
+    let button = document.querySelector('input#btn-save-and-next');
+    if (button) {
+      button.click();
+    } else {
+      console.log("Кнопка не найдена");
+    }
+  });
+
+  // Добавляем кнопку на страницу
+  document.body.appendChild(customButton);
+} else {
+  console.log("StatusId is hidden.");
+}
+console.log("Custom button created.");
+
+	
+</script>
+
+</html>
